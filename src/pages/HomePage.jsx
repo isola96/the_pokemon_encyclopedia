@@ -1,8 +1,11 @@
 import React from 'react'
+import PokemonsInfo from '../components/PokemonsInfo'
 
 const HomePage = () => {
     return (
-        <div>HomePage</div>
+        <>
+            <PokemonsInfo />
+        </>
     )
 }
 
