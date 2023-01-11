@@ -19,3 +19,8 @@ const get = async (endpoint) => {
 export const getAllPokemons = () => {
     return get(`/pokemon/`)
 }
+
+// GET - Get a single pokémon
+export const getPokemon = (name) => {
+    return get(`/pokemon/${name}`)
+}

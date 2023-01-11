@@ -1,4 +1,6 @@
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getAllPokemons } from '../services/PokeApi'
 
@@ -15,8 +17,15 @@ const PokemonsInfo = () => {
 
             {data && (
                 <ul>
-                    {data.results.map(i => (
-                        <li key={i.url}>{i.name}</li>
+                    {data.results.map(pokemon => (
+                        <li key={pokemon.url}>
+                            {pokemon.name}
+                            <Button
+                                as={Link}
+                                to={`/pokemon/${pokemon.name}`}
+                                >Click me
+                            </Button>
+                        </li>
                     ))}
                 </ul>
             )}
