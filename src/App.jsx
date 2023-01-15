@@ -5,6 +5,9 @@ import Navigation from './components/Navigation'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import PokemonPage from './pages/PokemonPage'
+import LogInPage from './pages/LogInPage'
+import LogOutPage from './pages/LogOutPage'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
 	return (
@@ -12,6 +15,9 @@ function App() {
 			<Navigation/>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/login" element={<LogInPage />} />
+				<Route path="/logout" element={<LogOutPage />} />
+				<Route path="/signup" element={<SignUpPage />} />
 				<Route path="/pokemon/:name" element={<PokemonPage />} />
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
