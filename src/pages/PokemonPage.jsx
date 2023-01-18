@@ -10,9 +10,9 @@ const PokemonPage = () => {
     return (
         <>
             <Container>
-            {isLoading && (<p>Loading pokemon...</p>)}
+            {isLoading && (<span>Loading pokemon...</span>)}
 
-            {isError && (<p>An error occured {error.message}</p>)}
+            {isError && (<span>An error occured {error.message}</span>)}
             
             {data && (
                 <>

@@ -7,16 +7,16 @@ const PokemonInfo = ({ goddamnpokemon }) => {
             <Container>
                 <h1>{goddamnpokemon.name}</h1>
                 <img src={goddamnpokemon.sprites.other.dream_world.front_default} alt="pokemon-picture" className='w-50 p-3' />
-                <p>{goddamnpokemon.types[0].type.name}</p>
+                <div>{goddamnpokemon.types[0].type.name}</div>
 
                 {goddamnpokemon.types.length > 1 ? (
-                    <p>{goddamnpokemon.types[1].type.name}</p>
+                    <div>{goddamnpokemon.types[1].type.name}</div>
                 ) : (
-                    <p></p>
+                    <div></div>
                 )}
 
-                <p>Height {goddamnpokemon.height}</p>
-                <p>Weight {goddamnpokemon.weight}</p>
+                <div>Height {goddamnpokemon.height}</div>
+                <div>Weight {goddamnpokemon.weight}</div>
             </Container>
         </>
     )

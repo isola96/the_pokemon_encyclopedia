@@ -1,35 +1,48 @@
-import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getAllPokemons } from '../services/PokeApi'
 
-const PokemonsInfo = () => {
+const PokemonsInfo = ({ goddamnpokemon }) => {
     const {data, isLoading, error, isError} = useQuery(['pokemons'], getAllPokemons)
 
     return (
-        <Container>
-            <h1>This is a list of all Pokémons</h1>
+        <>
+            <Container>
+                <h1>Gotta catch 'em all</h1>
 
-            {isLoading && (<p>Loading Pokémons...</p>)}
+                {isLoading && (<span>Loading Pokémons...</span>)}
 
-            {isError && (<p>ERROR {error.message}</p>)}
+                {isError && (<span>ERROR {error.message}</span>)}
 
-            {data && (
-                <ul>
-                    {data.results.map(pokemon => (
-                        <li key={pokemon.url}>
-                            {pokemon.name}
-                            <Button
-                                as={Link}
-                                to={`/pokemon/${pokemon.name}`}
-                                >Click me
-                            </Button>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </Container>
+                {data && (
+                    <Row>
+                        {data.results.map(pokemon => (
+                            <Col lg={3} md={4} sm={6} key={pokemon.url}>
+                                <Card className='mb-3'>
+                                    <Card.Body>
+                                        <Card.Text>
+                                            <span><strong> {pokemon.name} </strong></span>
+                                        </Card.Text>
+
+                                        <Button 
+                                            variant="btn outline-dark" 
+                                            as={Link}
+                                            to={`/pokemon/${pokemon.name}`}                                       
+                                            >Read more
+                                        </Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                )}
+            </Container>
+        </>
     )
 }
 
