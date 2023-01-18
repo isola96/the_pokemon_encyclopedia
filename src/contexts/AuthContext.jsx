@@ -1,9 +1,10 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { auth, db } from '../firebase'
 import { 
         createUserWithEmailAndPassword, 
         signInWithEmailAndPassword, 
-        signOut 
+        signOut,
+        onAuthStateChanged,
         } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 
@@ -14,6 +15,11 @@ const useAuthContext = () => {
 }
 
 const AuthContextProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null)
+	const [userName, setUserName] = useState(null)
+	const [userEmail, setUserEmail] = useState(null)
+	const [loading, setLoading] = useState(true)
+
     const signup = async (email, password, name) => {
 		await createUserWithEmailAndPassword(auth, email, password)
 
@@ -33,15 +39,35 @@ const AuthContextProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // auth-state observer
+	useEffect(() => {
+		// listen for auth-state changes
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setCurrentUser(user)
+			setUserName(user?.displayName)
+			setUserEmail(user?.email)
+			setLoading(false)
+		})
+
+		return unsubscribe
+	}, [])
+
     const values = {
         signup,
         login,
         logout,
+        currentUser,
+        userName,
+		userEmail,
     }
 
     return (
         <AuthContext.Provider value={values}>
-            {children}
+            {loading ? (
+                <div>Loading....</div>
+            ) : (
+                children
+            )}
         </AuthContext.Provider>
     )
 }

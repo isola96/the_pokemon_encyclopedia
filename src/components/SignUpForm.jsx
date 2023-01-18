@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 
 const SignUpForm = () => {
@@ -11,6 +11,7 @@ const SignUpForm = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const { signup } = useAuthContext()
+	const navigate = useNavigate()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -25,7 +26,8 @@ const SignUpForm = () => {
 		// try to sign up the user
 		try {
 			setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await signup(emailRef.current.value, passwordRef.current.value, displayNameRef.current.value)
+			navigate('/')
 
 		} catch (err) {
 			setError(err.message)
@@ -46,7 +48,7 @@ const SignUpForm = () => {
 							<Form onSubmit={handleSubmit}>
                                 <Form.Group id="displayName" className="mb-3">
 									<Form.Label>Name</Form.Label>
-									<Form.Control type="text" ref={displayNameRef} />
+									<Form.Control type="text" ref={displayNameRef} required />
 								</Form.Group>
 
 								<Form.Group id="email" className="mb-3">
