@@ -8,23 +8,27 @@ const Navigation = () => {
 	const { currentUser } = useAuthContext()
 
 	return (
-		<Navbar expand="lg" bg="dark" variant="dark" className="pb-3">
+		<Navbar bg="dark" variant="dark" expand="md">
 			<Container>
 				<Navbar.Brand as={Link} to="/">The Pokémon Encyclopedia</Navbar.Brand>
-								
-				<Navbar.Collapse id="responsive-navbar-nav">
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto align-items-center">
 						{
 							currentUser ? (
 								<>
 									{/* User is logged in */}
-									<Nav.Link as={NavLink} end to="/logout">Log Out</Nav.Link>
+									<NavDropdown>
+										<NavLink to="/" className="dropdown-item">Profile</NavLink>
+										<NavDropdown.Divider />
+										<NavLink to="/logout" className="dropdown-item">Log Out</NavLink>
+									</NavDropdown>
 								</>
 							) : (
 								<>
 									{/* No user is logged in */}
-									<Nav.Link as={NavLink} end to="/login">Log In</Nav.Link>
-									<Nav.Link as={NavLink} end to="/signup">Sign Up</Nav.Link>
+									<Nav.Link as={NavLink} to="/login">Log In</Nav.Link>
+									<Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>
 								</>
 							)
 						}
