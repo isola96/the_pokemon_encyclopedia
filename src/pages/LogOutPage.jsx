@@ -1,8 +1,9 @@
 import React from 'react'
+import LogOutForm from '../components/LogOutForm'
 
 const LogOutPage = () => {
     return (
-        <div>LogOutPage</div>
+        <LogOutForm />
     )
 }
 
