@@ -9,6 +9,9 @@ import LogInPage from './pages/LogInPage'
 import LogOutPage from './pages/LogOutPage'
 import SignUpPage from './pages/SignUpPage'
 
+// Styling
+import '../src/assets/App.css'
+
 function App() {
 	return (
 		<div className="App">
