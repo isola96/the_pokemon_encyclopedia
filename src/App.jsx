@@ -8,6 +8,7 @@ import PokemonPage from './pages/PokemonPage'
 import LogInPage from './pages/LogInPage'
 import LogOutPage from './pages/LogOutPage'
 import SignUpPage from './pages/SignUpPage'
+import ProfilePage from './pages/ProfilePage'
 
 // Styling
 import '../src/assets/App.css'
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/login" element={<LogInPage />} />
 				<Route path="/logout" element={<LogOutPage />} />
 				<Route path="/signup" element={<SignUpPage />} />
+				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/pokemon/:name" element={<PokemonPage />} />
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
