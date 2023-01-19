@@ -5,8 +5,8 @@ const PokemonInfo = ({ goddamnpokemon }) => {
     return (
         <>
             <Container>
-                <h1>{goddamnpokemon.name}</h1>
-                <img src={goddamnpokemon.sprites.other.dream_world.front_default} alt="pokemon-picture" className='w-50 p-3' />
+                <h1>{goddamnpokemon.name}.</h1>
+                <img src={goddamnpokemon.sprites.other["official-artwork"].front_default} alt="pokemon-picture" className='w-50 p-3' />
                 <div>{goddamnpokemon.types[0].type.name}</div>
 
                 {goddamnpokemon.types.length > 1 ? (
