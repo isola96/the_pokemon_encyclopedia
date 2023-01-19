@@ -1,51 +1,41 @@
+import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import ListGroup from 'react-bootstrap/ListGroup'
-import { useAuthContext } from '../contexts/AuthContext'
-import { collection, getDocs } from 'firebase/firestore'
-import { useState, useEffect } from 'react'
+import { doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
+import { useAuthContext } from '../contexts/AuthContext'
+import useGetList from '../hooks/useGetList'
 
 const ProfilePage = () => {
     const { userEmail } = useAuthContext()
-    const [pokemons, setPokemons] = useState([])
-    const [loading, setLoading] = useState(true)
+    const { data: pokemons, loading } = useGetList()
 
-    useEffect(() => {
-		const getSnapshot = async () => {
-            setLoading(true)
-			// get reference to collection 'my-list'
-			const ref = collection(db, 'my-list')
-			const snapshot = await getDocs(ref)
-
-            const data = snapshot.docs.map(doc => {
-				return {
-					id: doc.id,
-					...doc.data(),  // name
-				}
-			})
-
-			setPokemons(data)
-			setLoading(false)
-		}
-		getSnapshot()
-	}, [])
+    const handleDelete = async pokemon => {
+        const ref = doc(db, 'my-list', pokemon.id)
+        await deleteDoc(ref)
+    }
 
     return (
         <>
             <Container className="py-3">
                 <h3>Welcome {userEmail}</h3>
 
-                {loading && (<p>Loading data...</p>)}
+                {loading && <p>Loading list...</p>}
 
-                {!loading &&
-                    <ListGroup>
-                        {pokemons.map((pokemon, index) => (
-                            <ListGroup.Item key={index}>
-                                {pokemon.name}
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-                }
+                {!loading && (
+                    <>
+                        <ListGroup>
+                            {pokemons.map((pokemon, index) => (
+                                <ListGroup.Item key={index}>
+                                    {pokemon.name}
+                                    <Button onClick={() => handleDelete(pokemon)} className="mt-2"
+                                        >Delete
+                                    </Button>
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    </>
+                )}
             </Container>
         </>
     )
