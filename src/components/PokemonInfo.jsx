@@ -1,22 +1,39 @@
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 const PokemonInfo = ({ goddamnpokemon }) => {
     
     return (
         <>
             <Container>
-                <h1>{goddamnpokemon.name}.</h1>
-                <img src={goddamnpokemon.sprites.other["official-artwork"].front_default} alt="pokemon-picture" className='w-50 p-3' />
-                <div>{goddamnpokemon.types[0].type.name}</div>
+                    <Row>   
+                        <Col lg={3} md={4} sm={6} key={goddamnpokemon.id}>
+                            <Card className='mb-3'>
+                                <Card.Header>
+                                    <Card.Img variant="top" src={goddamnpokemon.sprites.other["official-artwork"].front_default} />
+                                </Card.Header>
 
-                {goddamnpokemon.types.length > 1 ? (
-                    <div>{goddamnpokemon.types[1].type.name}</div>
-                ) : (
-                    <div></div>
-                )}
+                                <Card.Body>
+                                    <Card.Title>{goddamnpokemon.name}</Card.Title>
 
-                <div>Height {goddamnpokemon.height}</div>
-                <div>Weight {goddamnpokemon.weight}</div>
+                                    <Card.Text>
+                                        <p>{goddamnpokemon.types[0].type.name}</p>
+                                        {goddamnpokemon.types.length > 1 ? (
+                                            <p>{goddamnpokemon.types[1].type.name}</p>
+                                                ) : (
+                                                    <p></p>
+                                                )
+                                        }
+                                        <p>Height {goddamnpokemon.height}</p>
+                                        <p>Weight {goddamnpokemon.weight}</p>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
             </Container>
         </>
     )
