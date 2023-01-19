@@ -1,8 +1,8 @@
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import LikeButton from './LikeButton'
 
 const PokemonInfo = ({ goddamnpokemon }) => {
     
@@ -30,6 +30,7 @@ const PokemonInfo = ({ goddamnpokemon }) => {
                                         <p>Height {goddamnpokemon.height}</p>
                                         <p>Weight {goddamnpokemon.weight}</p>
                                     </Card.Text>
+                                    <LikeButton />
                                 </Card.Body>
                             </Card>
                         </Col>
