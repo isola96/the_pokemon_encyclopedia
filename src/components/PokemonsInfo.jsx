@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getAllPokemons } from '../services/PokeApi'
 
-const PokemonsInfo = ({ goddamnpokemon }) => {
+const PokemonsInfo = () => {
     const {data, isLoading, error, isError} = useQuery(['pokemons'], getAllPokemons)
 
     return (
