@@ -16,8 +16,8 @@ const get = async (endpoint) => {
 }
 
 // GET - Get all pokémons 
-export const getAllPokemons = () => {
-    return get(`/pokemon/`)
+export const getAllPokemons = (offset) => {
+    return get(`/pokemon/?offset=${offset}`)
 }
 
 // GET - Get a single pokémon

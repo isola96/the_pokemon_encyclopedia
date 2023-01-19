@@ -6,9 +6,14 @@ import Row from 'react-bootstrap/Row'
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getAllPokemons } from '../services/PokeApi'
+import { useState } from 'react'
 
 const PokemonsInfo = () => {
-    const {data, isLoading, error, isError} = useQuery(['pokemons'], getAllPokemons)
+    const [offset, setOffset] = useState(0)
+    const [limit, setLimit] = useState(20)
+    const {data, isLoading, error, isError} = useQuery(['pokemons', offset, limit], () => {
+        return getAllPokemons(offset)
+    })
 
     return (
         <>
@@ -19,9 +24,9 @@ const PokemonsInfo = () => {
 
                 {isError && (<span>ERROR {error.message}</span>)}
 
-                {data && (
-                    <Row>
-                        {data.results.map(pokemon => (
+                {data && data.results.map(pokemon => (
+                    <>
+                        <Row>
                             <Col lg={3} md={4} sm={6} key={pokemon.url}>
                                 <Card className='mb-3'>
                                     <Card.Body>
@@ -38,11 +43,24 @@ const PokemonsInfo = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-                        ))}
-                    </Row>
-                )}
+                        </Row>
+                    </>
+                ))}
+                <div>
+                    <Button 
+                        variant="btn outline-dark"   
+                        onClick={() => setOffset(currentPage => currentPage - 20)}                               
+                        >Previous
+                    </Button>
+                    <span>{offset} & {limit}</span>
+                    <Button 
+                        variant="btn outline-dark"      
+                        onClick={() => setOffset(currentPage => currentPage + 20)}                                        
+                        >Next
+                    </Button>
+                </div>
             </Container>
-        </>
+        </> 
     )
 }
 
