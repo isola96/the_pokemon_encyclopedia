@@ -6,6 +6,7 @@ body {
   background: url("./body_bg.png") no-repeat;
   background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+  text-transform: capitalize;
 }
 
 .App {
@@ -16,3 +17,4 @@ body {
   margin: 0 auto;
   margin-top: 60px;
 }
+
