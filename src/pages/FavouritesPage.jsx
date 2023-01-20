@@ -3,13 +3,15 @@ import Container from 'react-bootstrap/Container'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
-import useGetFavourites from '../hooks/useGetFavourites'
+import useStreamCollection from '../hooks/useStreamCollection'
+import { useAuthContext } from '../contexts/AuthContext'
 
 const FavouritesPage = () => {
-    const { data: pokemons, loading } = useGetFavourites()
+    const { currentUser } = useAuthContext()
+    const { data: pokemons, loading } = useStreamCollection(`users/${currentUser.uid}/favourites`)
 
     const handleDelete = async pokemon => {
-        const ref = doc(db, 'favourites', pokemon.id)
+        const ref = doc(db, `users/${currentUser.uid}/favourites`, pokemon.id)
         await deleteDoc(ref)
     }
 
