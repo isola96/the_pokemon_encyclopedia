@@ -48,6 +48,7 @@ const PokemonInfo = ({ goddamnpokemon }) => {
                                     </Card.Text>
                                     <div>
                                         <button 
+                                            className='fave-button'
                                             onClick={onCreateFavourite}
                                             disabled={data.find(obj => {
                                                 return obj.name === goddamnpokemon.name;
