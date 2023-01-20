@@ -18,12 +18,14 @@ const Navigation = () => {
 							currentUser ? (
 								<>
 									{/* User is logged in */}
+									<Nav.Link as={NavLink} to="/favourites">Favourites</Nav.Link>
 									<Nav.Link as={NavLink} to="/profile" >Profile</Nav.Link>
 									<Nav.Link as={NavLink} to="/logout" >Log Out</Nav.Link>
 								</>
 							) : (
 								<>
 									{/* No user is logged in */}
+									<Nav.Link as={NavLink} to="/favourites">Favourites</Nav.Link>
 									<Nav.Link as={NavLink} to="/login">Log In</Nav.Link>
 									<Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>
 								</>

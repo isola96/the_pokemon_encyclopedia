@@ -5,7 +5,6 @@ import { doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuthContext } from '../contexts/AuthContext'
 import useGetList from '../hooks/useGetList'
-import FavouritesPage from './FavouritesPage'
 
 const ProfilePage = () => {
     const { userEmail } = useAuthContext()
@@ -20,8 +19,6 @@ const ProfilePage = () => {
         <>
             <Container className="py-3">
                 <h3>Welcome {userEmail}</h3>
-
-                <FavouritesPage />
 
                 {loading && <p>Loading list...</p>}
 
