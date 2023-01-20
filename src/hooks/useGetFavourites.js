@@ -1,7 +1,7 @@
-import useStreamCollection from './useStreamCollection'
+/* import useStreamCollection from './useStreamCollection'
 
-const useGetFavourites = () => {
-    return useStreamCollection('favourites')
+const useGetFavourites = ({currentUserUid}) => {
+    return useStreamCollection(`users/${currentUserUid}/favourites`)
 }
 
-export default useGetFavourites
+export default useGetFavourites */
