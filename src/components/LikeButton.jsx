@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 
 const LikeButton = () => {
   const [like, setLike] = useState(false);
@@ -13,3 +13,4 @@ const LikeButton = () => {
 };
 
 export default LikeButton;
+ */

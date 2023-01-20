@@ -1,11 +1,25 @@
+import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import LikeButton from './LikeButton'
+import React, { useState } from 'react';
+import {collection, addDoc} from 'firebase/firestore'
+import { db } from '../firebase'
 
 const PokemonInfo = ({ goddamnpokemon }) => {
-    
+    const [loading, setLoading] = useState(false)
+
+    const onCreateFavourite = async (data) => {
+        setLoading(true)
+        
+        // store pokemon in Firestore
+        await addDoc(collection(db, 'favourites'), {
+            name: goddamnpokemon.name,
+        })
+        setLoading(false)
+    }
+
     return (
         <>
             <Container>
@@ -30,7 +44,11 @@ const PokemonInfo = ({ goddamnpokemon }) => {
                                         <p>Height {goddamnpokemon.height}</p>
                                         <p>Weight {goddamnpokemon.weight}</p>
                                     </Card.Text>
-                                    <LikeButton />
+                                    <div>
+                                        <button onClick={onCreateFavourite}>
+                                            ❤️
+                                        </button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>

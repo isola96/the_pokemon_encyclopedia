@@ -38,6 +38,8 @@ const ProfilePage = () => {
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
+
+                        <h3>Create new list</h3>
                     </>
                 )}
             </Container>
