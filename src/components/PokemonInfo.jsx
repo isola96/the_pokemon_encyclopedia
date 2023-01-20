@@ -6,11 +6,13 @@ import Row from 'react-bootstrap/Row'
 import React, { useState } from 'react';
 import {collection, addDoc} from 'firebase/firestore'
 import { db } from '../firebase'
+import useGetFavourites from '../hooks/useGetFavourites'
 
 const PokemonInfo = ({ goddamnpokemon }) => {
     const [loading, setLoading] = useState(false)
+    const { data } = useGetFavourites()
 
-    const onCreateFavourite = async (data) => {
+    const onCreateFavourite = async () => {
         setLoading(true)
         
         // store pokemon in Firestore
@@ -45,8 +47,12 @@ const PokemonInfo = ({ goddamnpokemon }) => {
                                         <p>Weight {goddamnpokemon.weight}</p>
                                     </Card.Text>
                                     <div>
-                                        <button onClick={onCreateFavourite}>
-                                            ❤️
+                                        <button 
+                                            onClick={onCreateFavourite}
+                                            disabled={data.find(obj => {
+                                                return obj.name === goddamnpokemon.name;
+                                            })}
+                                        >❤️
                                         </button>
                                     </div>
                                 </Card.Body>
