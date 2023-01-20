@@ -25,7 +25,6 @@ const Navigation = () => {
 							) : (
 								<>
 									{/* No user is logged in */}
-									<Nav.Link as={NavLink} to="/favourites">Favourites</Nav.Link>
 									<Nav.Link as={NavLink} to="/login">Log In</Nav.Link>
 									<Nav.Link as={NavLink} to="/signup">Sign Up</Nav.Link>
 								</>
