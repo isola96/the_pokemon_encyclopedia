@@ -35,7 +35,7 @@ const PokemonsInfo = () => {
                                         </Card.Text>
 
                                         <Button 
-                                            variant="btn outline-dark" 
+                                            variant="outline-dark" 
                                             as={Link}
                                             to={`/pokemon/${pokemon.name}`}                                       
                                             >Read more
@@ -48,13 +48,13 @@ const PokemonsInfo = () => {
                 }
                 <div>
                     <Button 
-                        variant="btn outline-dark"   
+                        variant="outline-dark"   
                         onClick={() => setOffset(currentPage => currentPage - 20)}                               
                         >Previous
                     </Button>
-                    <span>{offset} & {limit}</span>
+                    
                     <Button 
-                        variant="btn outline-dark"      
+                        variant="outline-dark"      
                         onClick={() => setOffset(currentPage => currentPage + 20)}                                        
                         >Next
                     </Button>

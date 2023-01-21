@@ -19,7 +19,6 @@ const PokemonInfo = ({ goddamnpokemon }) => {
     const onCreateFavourite = async () => {
         setLoading(true)
 
-        // store pokemon in Firestore
         await addDoc(collection(db, `users/${currentUser.uid}/favourites`), {
             name: goddamnpokemon.name,
         })
