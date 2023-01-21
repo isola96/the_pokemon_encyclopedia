@@ -24,41 +24,45 @@ const PokemonsInfo = () => {
 
                 {isError && (<span>ERROR {error.message}</span>)}
 
-                {data && 
-                    <Row>
-                        {data.results.map((pokemon, index) => (
-                            <Col lg={3} md={4} sm={6} key={index}>
-                                <Card className='mb-3'>
-                                    <Card.Body>
-                                        <Card.Text>
-                                            <span><strong> {pokemon.name} </strong></span>
-                                        </Card.Text>
+                {data && (
+                    <>
+                        <Row>
+                            {data.results.map((pokemon, index) => (
+                                <Col lg={3} md={4} sm={6} key={index}>
+                                    <Card className='mb-3'>
+                                        <Card.Body>
+                                            <Card.Text>
+                                                <span><strong> {pokemon.name} </strong></span>
+                                            </Card.Text>
 
-                                        <Button 
-                                            variant="outline-dark" 
-                                            as={Link}
-                                            to={`/pokemon/${pokemon.name}`}                                       
-                                            >Read more
-                                        </Button>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                }
-                <div>
-                    <Button 
-                        variant="outline-dark"   
-                        onClick={() => setOffset(currentPage => currentPage - 20)}                               
-                        >Previous
-                    </Button>
-                    
-                    <Button 
-                        variant="outline-dark"      
-                        onClick={() => setOffset(currentPage => currentPage + 20)}                                        
-                        >Next
-                    </Button>
-                </div>
+                                            <Button 
+                                                variant="outline-dark" 
+                                                as={Link}
+                                                to={`/pokemon/${pokemon.name}`}                                       
+                                                >Read more
+                                            </Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                        <div>
+                            <Button 
+                                variant="outline-dark" 
+                                disabled={!data.previous}
+                                onClick={() => setOffset(currentPage => currentPage - 20)}                               
+                                >Previous
+                            </Button>
+                            
+                            <Button 
+                                variant="outline-dark"      
+                                disabled={!data.next}
+                                onClick={() => setOffset(currentPage => currentPage + 20)}                                        
+                                >Next
+                            </Button>
+                        </div>
+                    </>
+                )}
             </Container>
         </> 
     )
