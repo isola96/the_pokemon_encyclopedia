@@ -23,7 +23,6 @@ const AuthContextProvider = ({ children }) => {
     const signup = async (email, password, name) => {
 		await createUserWithEmailAndPassword(auth, email, password)
 
-        // create user document
 		const docRef = doc(db, 'users', auth.currentUser.uid) 
 		await setDoc(docRef, {
 			name,
@@ -39,9 +38,7 @@ const AuthContextProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    // auth-state observer
 	useEffect(() => {
-		// listen for auth-state changes
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			setCurrentUser(user)
 			setUserName(user?.displayName)

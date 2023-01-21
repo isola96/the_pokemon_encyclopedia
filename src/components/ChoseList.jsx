@@ -1,9 +1,9 @@
 import React from 'react'
-import useStreamCollection from '../hooks/useStreamCollection'
-import { useAuthContext } from '../contexts/AuthContext'
 import { addDoc, doc, collection, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../firebase'
+import useStreamCollection from '../hooks/useStreamCollection'
+import { useAuthContext } from '../contexts/AuthContext'
 
 const ChoseList = ({ goddamnpokemon }) => {
     const [loading, setLoading] = useState(false)
@@ -12,8 +12,6 @@ const ChoseList = ({ goddamnpokemon }) => {
 
     const onChosenList = async (list) => {
         setLoading(true)
-        
-        // store pokemon in Firestore
         await addDoc(collection(db, `users/${currentUser.uid}/lists/${list.uid}/pokemons`), {
             name: goddamnpokemon.name,
         }).then(async (credentials) => {
@@ -25,13 +23,13 @@ const ChoseList = ({ goddamnpokemon }) => {
 
     return (
         <>
-            {isLoading && <p>Loading..</p>}
+            {isLoading && <p>Loading...</p>}
 
             {data && (
                 <>
-                    <h1>My lists</h1>
-                    {data.map(list => (
-                        <div onClick={() => onChosenList(list)}>{list.name}</div>
+                    <h3>My lists</h3>
+                    {data.map((list, index) => (
+                        <div key={index} onClick={() => onChosenList(list)}>{list.name}</div>
                     ))}
                 </>
             )} 

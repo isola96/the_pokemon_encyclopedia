@@ -40,7 +40,7 @@ const ProfilePage = () => {
     return (
         <>
             <Container className="py-3">
-                <h3>Welcome {userEmail}</h3>
+                <h2>Welcome {userEmail}</h2>
 
                 {loading && <p>Loading list...</p>}
 
@@ -48,7 +48,7 @@ const ProfilePage = () => {
                     <>  
                         {data && (
                             <>
-                                <h1>My lists</h1>
+                                <h3>My lists</h3>
                                 {data.map(list => (
                                     <a href={`/profile/${list.uid}`} key={list.id}>{list.name}</a>
                                 ))}
@@ -56,7 +56,11 @@ const ProfilePage = () => {
                         )} 
 
                         <h3>Create new list</h3>
-                        <button onClick={() => setInputField(true)}>Create new list</button>
+                        <Button 
+                            variant='outline-dark'
+                            onClick={() => setInputField(true)}
+                        >Create new list
+                        </Button>
 
                         {inputField && (
                             <>
@@ -69,8 +73,7 @@ const ProfilePage = () => {
                                         variant="primary" 
                                         type="submit"
                                         onClick={onSubmit}
-                                    >
-                                        Submit
+                                    >Submit
                                     </Button>
                                 </Form>
                             </>

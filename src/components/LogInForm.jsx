@@ -15,7 +15,6 @@ const LogInForm = () => {
 		e.preventDefault()
 		setError(null);
 
-		// try to log in 
 		try {
 			setLoading(true)
 			await login(emailRef.current.value, passwordRef.current.value)
@@ -38,7 +37,6 @@ const LogInForm = () => {
 							{error && (<Alert variant="danger">{error}</Alert>)}
 
 							<Form onSubmit={handleSubmit}>
-
 								<Form.Group id="email" className="mb-3">
 									<Form.Label>Email</Form.Label>
 									<Form.Control type="email" ref={emailRef} required />

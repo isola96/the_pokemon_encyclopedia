@@ -28,58 +28,58 @@ const PokemonInfo = ({ goddamnpokemon }) => {
 
     return (
         <>
-        {data && (
-            <Container>
-                <Row>   
-                    <Col lg={3} md={4} sm={6} key={goddamnpokemon.id}>
-                        <Card className='mb-3'>
-                            <Card.Header>
-                                <Card.Img variant="top" src={goddamnpokemon.sprites.other["official-artwork"].front_default} />
-                            </Card.Header>
+            {data && (
+                <Container>
+                    <Card className='mb-3'>
+                        <Card.Header>
+                            <Card.Img variant="top" src={goddamnpokemon.sprites.other["official-artwork"].front_default} className='w-50 p-3' />
+                        </Card.Header>
 
-                            <Card.Body>
-                                <Card.Title>{goddamnpokemon.name}</Card.Title>
+                        <Card.Body>
+                            <h2>{goddamnpokemon.name}</h2>
 
-                                <Card.Text>
-                                    <p>{goddamnpokemon.types[0].type.name}</p>
-                                    {goddamnpokemon.types.length > 1 ? (
-                                        <p>{goddamnpokemon.types[1].type.name}</p>
-                                            ) : (
-                                                <p></p>
-                                            )
-                                    }
-                                    <p>Height {goddamnpokemon.height}</p>
-                                    <p>Weight {goddamnpokemon.weight}</p>
-                                </Card.Text>
-                                {currentUser && (
-                                    <div>
-                                        <button 
-                                            className='fave-button'
-                                            onClick={onCreateFavourite}
-                                            disabled={data.find(obj => {
-                                                return obj.name === goddamnpokemon.name;
-                                            })}
-                                        >❤️
-                                        </button>
+                            <div>
+                                <div>{goddamnpokemon.types[0].type.name}</div>
 
-                                        <button 
-                                            onClick={() => setAddToList(true)}
-                                        >Add to list
-                                        </button>
+                                {goddamnpokemon.types.length > 1 ? (
+                                    <div>{goddamnpokemon.types[1].type.name}</div>
+                                        ) : (
+                                            <div></div>  
+                                        )
+                                }
+                            </div>
+                            
+                            <div>Height: {goddamnpokemon.height}</div>
 
-                                        {addToList && (
-                                            <ChoseList goddamnpokemon={goddamnpokemon} />
-                                        )}
-                                    </div>
-                                )}
-                                
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )}
-            
+                            <div>Weight: {goddamnpokemon.weight}</div>
+                            
+                            {currentUser && (
+                                <div>
+                                    <Button
+                                        variant="outline-dark"
+                                        className='fave-button'
+                                        onClick={onCreateFavourite}
+                                        disabled={data.find(obj => {
+                                            return obj.name === goddamnpokemon.name;
+                                        })}
+                                    >❤️
+                                    </Button>
+
+                                    <Button 
+                                        variant="outline-dark"
+                                        onClick={() => setAddToList(true)}
+                                    >Add to list
+                                    </Button>
+
+                                    {addToList && (
+                                        <ChoseList goddamnpokemon={goddamnpokemon} />
+                                    )}
+                                </div>
+                            )}
+                        </Card.Body>
+                    </Card>
+                </Container>
+            )}
         </>
     )
 }

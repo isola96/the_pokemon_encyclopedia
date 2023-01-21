@@ -16,14 +16,12 @@ const SignUpForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		// check password is the same in both fields
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
 			return setError("The passwords does not match")
 		}
 
 		setError(null);
 
-		// try to sign up the user
 		try {
 			setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value, displayNameRef.current.value)
@@ -68,12 +66,12 @@ const SignUpForm = () => {
 
 								<Button disabled={loading} type="submit">Create Account</Button>
 							</Form>
-
 						</Card.Body>
 					</Card>
 
 					<div className="text-center mt-3">
-						Already have an account? <Link to="/login">Log In</Link>
+						Already have an account? 
+						<Link to="/login">Log In</Link>
 					</div>
 				</Col>
 			</Row>
