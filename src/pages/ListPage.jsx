@@ -6,8 +6,6 @@ import { useAuthContext } from '../contexts/AuthContext'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
-
-
 const ListPage = () => {
     const { currentUser } = useAuthContext()
     const { uid } = useParams()
