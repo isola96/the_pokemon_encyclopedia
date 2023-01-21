@@ -27,8 +27,11 @@ const FavouritesPage = () => {
                             {pokemons.map((pokemon, index) => (
                                 <ListGroup.Item key={index}>
                                     {pokemon.name}
-                                    <Button onClick={() => handleDelete(pokemon)} className="mt-2"
-                                        >Delete
+                                    <Button 
+                                        variant='outline-dark'
+                                        onClick={() => handleDelete(pokemon)} 
+                                        className="mt-2"
+                                    >Delete
                                     </Button>
                                 </ListGroup.Item>
                             ))}
