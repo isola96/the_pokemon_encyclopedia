@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form';
-import { addDoc, doc, collection, updateDoc } from 'firebase/firestore'
+import { addDoc, doc, collection, updateDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useState, useRef } from 'react'
@@ -37,6 +37,11 @@ const ProfilePage = () => {
 
     }
 
+    const handleDelete = async list => {
+        const ref = doc(db, `users/${currentUser.uid}/lists`, list.id)
+        await deleteDoc(ref)
+    }
+
     return (
         <>
             <Container className="py-3">
@@ -50,7 +55,14 @@ const ProfilePage = () => {
                             <>
                                 <h3>My lists</h3>
                                 {data.map(list => (
-                                    <a href={`/profile/${list.uid}`} key={list.id}>{list.name}</a>
+                                    <div key={list.id}>
+                                        <a href={`/profile/${list.uid}`}>{list.name}</a>
+                                        <Button 
+                                            onClick={() => handleDelete(list)} 
+                                            className="mt-2"
+                                        >Delete
+                                        </Button>
+                                    </div>
                                 ))}
                             </>
                         )} 
