@@ -24,10 +24,10 @@ const PokemonsInfo = () => {
 
                 {isError && (<span>ERROR {error.message}</span>)}
 
-                {data && data.results.map(pokemon => (
-                    <>
-                        <Row>
-                            <Col lg={3} md={4} sm={6} key={pokemon.url}>
+                {data && 
+                    <Row>
+                        {data.results.map((pokemon, index) => (
+                            <Col lg={3} md={4} sm={6} key={index}>
                                 <Card className='mb-3'>
                                     <Card.Body>
                                         <Card.Text>
@@ -43,9 +43,9 @@ const PokemonsInfo = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-                        </Row>
-                    </>
-                ))}
+                        ))}
+                    </Row>
+                }
                 <div>
                     <Button 
                         variant="btn outline-dark"   
