@@ -58,6 +58,7 @@ const ProfilePage = () => {
                                     <div key={list.id}>
                                         <a href={`/profile/${list.uid}`}>{list.name}</a>
                                         <Button 
+                                            variant='outline-dark'
                                             onClick={() => handleDelete(list)} 
                                             className="mt-2"
                                         >Delete
@@ -82,7 +83,7 @@ const ProfilePage = () => {
                                         <Form.Control type="text" placeholder="Enter list name" ref={newListRef} />
                                     </Form.Group>
                                     <Button 
-                                        variant="primary" 
+                                        variant="outline-dark" 
                                         type="submit"
                                         onClick={onSubmit}
                                     >Submit

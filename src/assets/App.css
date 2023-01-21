@@ -21,3 +21,7 @@ body {
 .fave-button:disabled {
   display: none;
 }
+
+.clickingOnList {
+  cursor: pointer;
+}

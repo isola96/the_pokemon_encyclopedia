@@ -19,19 +19,27 @@ const ChoseList = ({ goddamnpokemon }) => {
             updateDoc(ref, {uid: credentials.id})
         })
         setLoading(false)
+        alert("Successfully added to list")
     }
 
     return (
         <>
             {isLoading && <p>Loading...</p>}
 
-            {data && (
+            {data.length > 0 ? (
                 <>
                     <h3>My lists</h3>
                     {data.map((list, index) => (
-                        <div key={index} onClick={() => onChosenList(list)}>{list.name}</div>
+                        <div 
+                            className='clickingOnList' 
+                            key={index} 
+                            onClick={() => onChosenList(list)}
+                        >{list.name}
+                        </div>
                     ))}
                 </>
+            ) : (
+                <div>You have no lists 😞</div>
             )} 
         </>
     )

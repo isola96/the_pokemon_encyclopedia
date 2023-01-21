@@ -24,6 +24,7 @@ const ListPage = () => {
                         <div key={index}>
                             {pokemon.name}
                             <Button 
+                                variant="outline-dark"
                                 onClick={() => handleDelete(pokemon)} 
                                 className="mt-2"
                             >Delete
