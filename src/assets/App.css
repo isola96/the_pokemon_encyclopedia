@@ -25,3 +25,7 @@ body {
 .clickingOnList {
   cursor: pointer;
 }
+
+.searchDiv {
+  margin-bottom: 8px;
+}

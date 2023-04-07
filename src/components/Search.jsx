@@ -39,7 +39,7 @@ function Search({ details }) {
 
 	return (
     	<section>
-			<div>
+			<div className='searchDiv'>
 				<input 
 					type = "search" 
 					placeholder = "Search Pokemon" 

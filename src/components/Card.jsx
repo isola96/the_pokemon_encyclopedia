@@ -6,8 +6,13 @@ function Card({	pokemon }) {
 	return(
 		<div>
 			<div>
-				<h2>{pokemon.name}</h2>
-				<Button as={Link} to={`/pokemon/${pokemon.name}`}>Read More</Button>
+				<p>{pokemon.name}</p>
+				<Button 
+					variant="outline-dark" 
+					as={Link} 
+					to={`/pokemon/${pokemon.name}`}
+				>Read More
+				</Button>
 			</div>
 		</div>
 	);
