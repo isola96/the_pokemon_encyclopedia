@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import PokemonInfo from '../components/PokemonInfo'
 import { useParams } from "react-router-dom"
-import usePokemon from '../hooks/getPokemon'
+import usePokemon from '../hooks/usePokemon'
 
 const PokemonPage = () => {
     const { name } = useParams()
