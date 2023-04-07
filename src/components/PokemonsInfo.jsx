@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getAllPokemons } from '../services/PokeApi'
 import { useState } from 'react'
+import Search from './Search'
 
 const PokemonsInfo = () => {
     const [offset, setOffset] = useState(0)
@@ -26,6 +27,8 @@ const PokemonsInfo = () => {
 
                 {data && (
                     <>
+                        <Search details={data.results} />
+                        
                         <Row>
                             {data.results.map((pokemon, index) => (
                                 <Col lg={3} md={4} sm={6} key={index}>
