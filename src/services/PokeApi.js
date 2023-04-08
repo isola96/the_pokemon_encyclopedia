@@ -20,6 +20,11 @@ export const getAllPokemons = (offset) => {
     return get(`/pokemon/?offset=${offset}`)
 }
 
+// GET - Get all pokémons with limit 
+export const getAllPokemonsLimit = (limit) => {
+    return get(`/pokemon/?limit=${limit}`)
+}
+
 // GET - Get a single pokémon
 export const getPokemon = (name) => {
     return get(`/pokemon/${name}`)
